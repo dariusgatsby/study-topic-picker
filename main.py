@@ -16,18 +16,17 @@ window.geometry("552x351")
 
 
 bg_img = PhotoImage(file="background.png")
-canvas = Canvas(width=532, height=351)
-bg_label = Label(image=bg_img)
-bg_label.place(x=0, y=0)
 
-canvas.create_text(266, 176, text="Topic")
-canvas.place(relx=0.5, rely=100 / 351, anchor="center")
+canvas = Canvas(window, width=bg_img.width(), height=bg_img.height())
+canvas.create_image(bg_img.width()/2, bg_img.height()/2, anchor='center', image=bg_img)
+canvas.pack(fill="both", expand=True)
 
-canvas.create_text(266, 0, text="Topic", font=("Arial", 16, "bold"), anchor="n")
+canvas.create_text(bg_img.width()/2, 150, text="Topic", font=("Arial", 16, "bold"), fill="white")
+
 
 
 topic_entry = Entry(width=45)
-topic_entry.place(relx=0.5, rely=260 / 351, anchor="center")
+canvas.create_window(bg_img.width()/2, 260, window=topic_entry, anchor="center")
 
 # Define button width and height
 button_width = 80
@@ -37,15 +36,14 @@ button_height = 30
 horizontal_space = (552 - (3 * button_width)) / 4
 
 # Create three buttons
-button1 = Button(text="✔")
-button2 = Button(text="❌")
-button3 = Button(text="♻️")
+button1 = Button(canvas, text="✔")
+button2 = Button(canvas, text="❌")
+button3 = Button(canvas, text="♻️")
 
 # Place the buttons using the calculated positions
-button1.place(relx=(horizontal_space + button_width) / 552, rely=300 / 351, anchor="center")
-button2.place(relx=0.5, rely=300 / 351, anchor="center")
-button3.place(relx=(552 - (button_width + horizontal_space)) / 552, rely=300 / 351, anchor="center")
-
+button1.place(relx=0.35, rely=300 / bg_img.height(), anchor="center")
+button2.place(relx=0.5, rely=300 / bg_img.height(), anchor="center")
+button3.place(relx=0.65, rely=300 / bg_img.height(), anchor="center")
 
 
 window.mainloop()

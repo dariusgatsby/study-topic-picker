@@ -1,37 +1,38 @@
-from tkinter import *
-from PIL import Image, ImageTk
+from tkinter import Tk, PhotoImage, Canvas, Entry, Button
+
+def button_click(button_number):
+    print(f"Button {button_number} clicked!")
+
+window = Tk()
+window.title('Study Topic Selector')
+window.geometry("552x351")
+
+bg_img = PhotoImage(file="background.png")
+
+# Set canvas dimensions to match the image
+canvas = Canvas(window, width=bg_img.width(), height=bg_img.height())
+canvas.create_image(bg_img.width()/2, bg_img.height()/2, anchor='center', image=bg_img)
+canvas.pack(fill="both", expand=True)
+
+# Create text in the middle of the canvas
+canvas.create_text(bg_img.width()/2, 100, text="Topic", font=("Arial", 16, "bold"), anchor="n")
 
 
-def resize_image(event):
-    new_width = event.width
-    new_height = event.height
+topic_entry = Entry(width=45)
+canvas.create_window(bg_img.width()/2, 260, window=topic_entry, anchor="center")
 
-    image = copy_of_image.resize((new_width, new_height))
-    photo = ImageTk.PhotoImage(image)
+# Define button width and height
+button_width = 80
+button_height = 30
 
-    label.config(image=photo)
-    label.image = photo  # avoid garbage collection
+# Create three buttons
+button1 = Button(canvas, text="✔", command=lambda: button_click(1))
+button2 = Button(canvas, text="❌", command=lambda: button_click(2))
+button3 = Button(canvas, text="♻️", command=lambda: button_click(3))
 
+# Place the buttons evenly spaced along the width of the canvas
+button1.place(relx=0.35, rely=300 / bg_img.height(), anchor="center")
+button2.place(relx=0.5, rely=300 / bg_img.height(), anchor="center")
+button3.place(relx=0.65, rely=300 / bg_img.height(), anchor="center")
 
-root = Tk()
-root.title("Title")
-root.geometry('600x600')
-
-frame = Frame(root, relief='raised', borderwidth=2)
-frame.pack(fill=BOTH, expand=YES)
-frame.pack_propagate(False)
-
-copy_of_image = PhotoImage(file="background.png")
-photo = copy_of_image
-
-label = Label(frame, image=photo)
-label.place(x=0, y=0, relwidth=1, relheight=1)
-label.bind('<Configure>', resize_image)
-
-center_frame = Frame(frame, relief='raised', borderwidth=2)
-center_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
-
-Label(center_frame, text='Full Name', width=8).pack()
-Label(center_frame, text='Education', width=8).pack()
-
-root.mainloop()
+window.mainloop()
