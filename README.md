@@ -7,4 +7,6 @@
 - in main.py is the code I wrote along with my good friend GPT (mainly for tkinter placements/measurements because I don't believe those are necesary skills for my desired role) to have a lightly featured study topic selector, with the ability to add, delete, and show topics, as well as pick at random.
 - So when the merchant offers a good topic you have to take it!
 
-![image](https://github.com/dariusgatsby/study-topic-picker/assets/145069350/a2bd51ec-c4ac-4924-adb4-cd5adf04bf33)
+![image](https://github.com/dariusgatsby/study-topic-picker/assets/145069350/a2bd51ec-c4ac-4924-adb4-cd5adf04bf33) 
+![image](https://github.com/dariusgatsby/study-topic-picker/assets/145069350/090e8651-deb5-465f-a7ea-cc6e706a74a4)
+
